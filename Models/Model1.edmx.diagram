@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8cead147d8bc4cf281da7e3d0d15c627" Name="Diagram1">
+        <EntityTypeShape EntityType="HotelMSModel.Booking" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="HotelMSModel.Payment" Width="1.5" PointX="7.5" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HotelMSModel.Room" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HotelMSModel.UserAccount" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <AssociationConnector Association="HotelMSModel.FK__Booking__RoomId__2D27B809" ManuallyRouted="false" />
+        <AssociationConnector Association="HotelMSModel.FK__Payment__Payment__300424B4" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="HotelMSModel.Customer" Width="1.5" PointX="3" PointY="1.125" />
+        <AssociationConnector Association="HotelMSModel.FK__Booking__Custome__2C3393D0" />
+        <AssociationConnector Association="HotelMSModel.FK__Customer__UserId__276EDEB3" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

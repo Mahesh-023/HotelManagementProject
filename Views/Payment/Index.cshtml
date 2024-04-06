@@ -1,0 +1,76 @@
+﻿
+@model IEnumerable<HotelManagementProject.Models.Payment>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Payment Details</h2>
+
+<table width:"100%" class=" table table-bordered border-1">
+    <thead style="background-color: cadetblue; border-width:1px; border-color:black; height: 35px">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AmountPaid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaymentDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Paymentstatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaymentMode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Booking.BookingId)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody style=" border-width: 1px; border-color:black;">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AmountPaid)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PaymentDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Paymentstatus)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PaymentMode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Booking.BookingId)
+                </td>
+                <td>
+                    <button class="btn btn-info">@Html.ActionLink("Back", "ManageBookings", "Admin", new { id = item.PaymentId }, null)</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<style>
+    .container, .container-fluid, .container-xxl, .container-xl, .container-lg, .container-md, .container-sm {
+        --bs-gutter-x: 1.5rem;
+        --bs-gutter-y: 0;
+        width: 100%;
+    }
+
+    .container-sm, .container {
+        max-width: 100%;
+    }
+
+    td, th {
+        text-align: center;
+    }
+    footer {
+        bottom: 0;
+        position: fixed;
+        width: -webkit-fill-available;
+    }
+</style>

@@ -1,0 +1,100 @@
+﻿@model IPagedList<HotelManagementProject.Models.Room>
+@using PagedList.Mvc;
+@using PagedList;
+@{
+    ViewBag.Title = "ManageRoom";
+    var count = 0;
+    var state = "Available";
+    var s = "";
+}
+
+
+<table width:"100%" class=" table table-bordered border-1">
+    <thead style="background-color: cadetblue; border-width: 1px; border-color: black; height: 35px">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.First().RoomName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().RoomType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().RoomImage)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody style=" border-width: 1px; border-color:black;">
+
+        @foreach (var item in Model)
+        {
+            var rowclass = count % 2 == 0 ? "even" : "odd";
+            count++;
+            <tr class="@rowclass">
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoomName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoomType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    <img src="@Url.Content(item.RoomImage)" height="60" width="60" />
+                </td>
+                <td>
+                    <button class="btn btn-info text-white">
+                        <a href="@Url.Action("EditRoom", new { id = item.RoomId })" style="color: inherit; text-decoration: none;">Edit</a>
+                    </button>
+
+                    <button class="btn btn-danger">
+                        <a href="@Url.Action("DeleteRoom", new { id = item.RoomId })" style="color: inherit; text-decoration: none;">Delete</a>
+                    </button>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@Html.PagedListPager(Model, i => Url.Action("ManageRoom", "Admin", new { i, search = Request.QueryString["search"] }))
+
+<style>
+    .container, .container-fluid, .container-xxl, .container-xl, .container-lg, .container-md, .container-sm {
+        --bs-gutter-x: 1.5rem;
+        --bs-gutter-y: 0;
+        width: 100%;
+    }
+
+    .container-sm, .container {
+        max-width: 100%;
+
+    }
+    table {
+        min-height: 70vh;
+    }
+    td, th {
+        text-align: center;
+    }
+
+    button {
+        margin-top: 12px;
+    }
+
+    .even {
+        background-color: white;
+    }
+
+    .odd {
+        background-color: whitesmoke;
+    }
+</style>

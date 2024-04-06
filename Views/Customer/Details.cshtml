@@ -1,0 +1,178 @@
+﻿@*@model HotelManagementProject.Models.Room
+
+    @{
+        ViewBag.Title = "Details";
+    }
+
+    <h2>Details</h2>
+
+    <div>
+        <h4>Room</h4>
+        <hr />
+        <dl class="dl-horizontal">
+
+            <div class="col-md-6">
+                <dt>
+                    @Html.DisplayNameFor(model => model.RoomName)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.RoomName)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.RoomType)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.RoomType)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Price)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Price)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Status)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Status)
+                </dd>
+            </div>
+            <div class="col-md-6">
+                <dt>
+                    @Html.DisplayNameFor(model => model.RoomImage)
+                </dt>
+
+                <dd>
+                    <img src="@Url.Content(Model.RoomImage)" height="200" width="200" />
+                </dd>
+            </div>
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Back to List", "Search")
+    </p>
+
+
+    <style>
+        .col-md-6 {
+            /* flex: 0 0 auto; */
+            width: 100%;
+            display: table-cell;
+        }
+
+
+        .container, .container-fluid, .container-xxl, .container-xl, .container-lg, .container-md, .container-sm {
+            --bs-gutter-x: 1.5rem;
+            --bs-gutter-y: 0;
+            width: 100%;
+        }
+
+        .container-sm, .container {
+            max-width: 100%;
+        }
+    </style>*@
+
+
+
+@model HotelManagementProject.Models.Room
+
+@{
+    ViewBag.Title = "Details";
+}
+<h2>Details</h2>
+
+<div class="main-container">
+    
+    <hr />
+    <div class="container-fluid">
+
+        <dl class="row">
+            <div class="col-sm-6" style=" padding-left: 50px; padding-top: 40px ">
+                <div class="row">
+                    <dt class="col-sm-3">
+                        @Html.DisplayNameFor(model => model.RoomName)
+                    </dt>
+
+                    <dd class="col-sm-9">
+                        @Html.DisplayFor(model => model.RoomName)
+                    </dd>
+
+                    <dt class="col-sm-3">
+                        @Html.DisplayNameFor(model => model.RoomType)
+                    </dt>
+
+                    <dd class="col-sm-9">
+                        @Html.DisplayFor(model => model.RoomType)
+                    </dd>
+
+                    <dt class="col-sm-3">
+                        @Html.DisplayNameFor(model => model.Price)
+                    </dt>
+
+                    <dd class="col-sm-9">
+                        @Html.DisplayFor(model => model.Price)
+                    </dd>
+
+                    <dt class="col-sm-3">
+                        @Html.DisplayNameFor(model => model.Status)
+                    </dt>
+
+                    <dd class="col-sm-9">
+                        @Html.DisplayFor(model => model.Status)
+                    </dd>
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-actions no-color" style="
+    margin-top: 40px;
+">
+                           
+                            <button class="btn btn-info">@Html.ActionLink("Back to List", "Search")</button>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <dd>
+                    <img src="@Url.Content(Model.RoomImage)" height="300" width="350" style="
+    border-radius: 20px;
+" />
+                </dd>
+            </div>
+        </dl>
+
+
+    </div>
+</div>
+
+<style>
+    .container, .container-fluid, .container-xxl, .container-xl, .container-lg, .container-md, .container-sm {
+        --bs-gutter-x: 1.5rem;
+        --bs-gutter-y: 0;
+        width: 100%;
+    }
+
+    .container-sm, .container {
+        max-width: 100%;
+    }
+
+    footer {
+        margin-top: 60px;
+    }
+
+    .col-sm-9 {
+        padding-left: 40px;
+    }
+
+    h3, h4 {
+        text-align: center;
+    }
+</style>

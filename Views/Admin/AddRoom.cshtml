@@ -1,0 +1,102 @@
+﻿@model HotelManagementProject.Models.Room
+
+@{
+    ViewBag.Title = "AddRoom";
+}
+
+
+<section class="sec">
+    @*<h2>ADD NEW ROOMS</h2>*@
+
+    @using (Html.BeginForm("AddRoom", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+           
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <h2>ADD NEW ROOMS</h2>
+               <label>ROOM NAME</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.RoomName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.RoomName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>ROOM TYPE</label>
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.RoomType, ViewBag.RoomType as SelectList, "Select Room Type", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.RoomType, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>ROOM PRICE</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>ROOM STATUS</label>
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.Status, ViewBag.status as SelectList, "Select Status", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>ROOM IMAGE</label>
+                <div class="col-md-10">
+                    <input type="file" name="ImageFile" accept="image/*" required />
+                    @Html.ValidationMessageFor(model => model.RoomImage, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create-Room" class="btn btn-success" />
+                </div>
+            </div>
+        </div>
+        <br />
+        <br />
+    }
+
+</section>
+<style>
+    .container, .container-fluid, .container-xxl, .container-xl, .container-lg, .container-md, .container-sm {
+        --bs-gutter-x: 1.5rem;
+        --bs-gutter-y: 0;
+        width: 100%;
+    }
+
+    .container-sm, .container {
+        max-width: 100%;
+    }
+    .sec {
+        padding: 25px;
+        justify-content: center;
+        justify-items: center;
+        display: flex;
+        background-image: url('../../images/index_1 (3).jpg');
+        background-repeat:no-repeat;
+        background-size:cover;
+
+    }
+    label{
+        color:white;
+        font-weight:400;
+    }
+
+    h2{
+        color:white;
+    }
+</style>
+
+
+
+

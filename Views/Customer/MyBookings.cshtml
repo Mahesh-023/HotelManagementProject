@@ -1,0 +1,126 @@
+﻿@model IEnumerable<HotelManagementProject.Models.Booking>
+
+@{
+    ViewBag.Title = "MyBookings";
+    bool isPaymentExists = false;
+
+
+
+}
+<section class="abv">
+    <h2 class="txt">MyBookings</h2>
+    @if (Model.Count() == 0)
+    {
+                <h4>No rooms booked yet </h4>
+    }
+    else
+    {
+    <table class="table table-bordered ">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CheckInDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CheckOutDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalAmount)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Customer.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Room.RoomName)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CheckInDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CheckOutDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalAmount)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Customer.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Room.RoomName)
+                </td>
+                <td>
+                    @if (Model != null && item.BookingId != null)
+                    {
+                        int b = item.BookingId;
+                        isPaymentExists = item.Payments.Any(p => p.BookingId == b);
+                    }
+                     @if (!isPaymentExists)
+                     {
+                    <a href="@Url.Action("MakePayment", "Payment", new { id = item.BookingId, amt = item.TotalAmount })" class="btn btn-success">Make Payment</a>
+                     }
+                    <br />
+                   <br />
+                    <a href="@Url.Action("Cancel", "Customer")" class="btn btn-danger">Cancel Booking</a>
+
+                </td>
+            </tr>
+        }
+
+    </table>
+    }
+</section>
+
+<style>
+
+    .container, .container-fluid, .container-xxl, .container-xl, .container-lg, .container-md, .container-sm {
+        --bs-gutter-x: 0;
+        --bs-gutter-y: 0;
+        width: 100%;
+    }
+    .abv{
+        min-height:80vh;
+    }
+    .container-sm, .container {
+        max-width: 100%;
+      
+    }
+
+    .txt{
+        margin-top:20px;
+        text-align:center;
+        color:white;
+    }
+
+
+    table {
+        margin-left: 40px;
+        margin-right: 40px;
+        width:65%;
+
+    }
+
+    .table {
+        --bs-table-color: var(--bs-body-color);
+        --bs-table-bg: transparent;
+        --bs-table-border-color: var(--bs-border-color);
+        --bs-table-accent-bg: transparent;
+        --bs-table-striped-color: var(--bs-body-color);
+        --bs-table-striped-bg: rgba(0, 0, 0, 0.05);
+        --bs-table-active-color: var(--bs-body-color);
+        --bs-table-active-bg: rgba(0, 0, 0, 0.1);
+        --bs-table-hover-color: var(--bs-body-color);
+        --bs-table-hover-bg: rgba(0, 0, 0, 0.075);
+        width: 93%;
+        margin-bottom: 1rem;
+        color: var(--bs-table-color);
+        vertical-align: top;
+        border-color: var(--bs-table-border-color);
+    }
+</style>

@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewBag.Title = "PaymentConfirmation";
+}
+
+<div class="mg" style="height:100%">
+   
+    <div class="popup">
+        <h1 style="color:green">Thanks for Booking</h1>
+        <br />
+        <h4>You Booking is Successful!!</h4>
+        <br />
+        <p>Room Booked</p>
+        <p>Hope You Enjoy Staying Here!!!</p>
+        <div class="text-right">
+            <button class="btn btn-warning">
+                <a href="@Url.Action("Index", "Home")" style="color: inherit; text-decoration: none;">Back to Home</a>
+            </button>
+
+        </div>
+    </div>
+</div>
+
+<style>
+    .container, .container-fluid, .container-xxl, .container-xl, .container-lg, .container-md, .container-sm {
+        --bs-gutter-x: 1.5rem;
+        --bs-gutter-y: 0;
+        width: 100%;
+    }
+
+    .container-sm, .container {
+        max-width: 100%;
+    }
+
+    section {
+        width: 100vw;
+        height: 100vh;
+    }
+    button{
+        text-decoration:none;
+    }
+    .popup {
+        width: 36.333333%;
+        padding: 60px;
+        left: 0;
+        margin-left: 33.333333%;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        background: white;
+        position: absolute;
+        top: 15%;
+        box-shadow: 5px 5px 5px #000;
+        z-index: 10001;
+    }
+    .mg {
+      min-height:80vh;
+    }
+</style>

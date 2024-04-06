@@ -1,0 +1,158 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eden Hotel & Resort</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm a">
+        <div class="container">
+            @*@Html.ActionLink("EDEN","Index", "Home", new { @class = "navbar-brand" })*@
+            <img  class="ig" src="~/Images/LOGO.png" />
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
+                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    @if (Session["id"] == null || Session["id"].ToString() != "1")
+                    {
+                        <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    }
+                        @if (Session["id"] != null && Session["id"].ToString() == "1")
+                        {
+                            <li>@Html.ActionLink("Rooms", "ManageRoom", "Admin", new { area = "" }, new { @class = "nav-link" })</li>
+                            <li>@Html.ActionLink("AddRooms", "AddRoom", "Admin", new { area = "" }, new { @class = "nav-link" })</li>
+                            <li>@Html.ActionLink("Bookings", "ManageBookings", "Admin", new { area = "" }, new { @class = "nav-link" })</li>
+                            <li>@Html.ActionLink("Customers", "ManageCustomers", "Admin", new { area = "" }, new { @class = "nav-link" })</li>
+                        }
+                        @if (Session["id"] != null && Session["id"].ToString() != "1")
+                        {
+                            @*<li>@Html.ActionLink("Dashbord", "Index", "Customer", new { area = "" }, new { @class = "nav-link" })</li>*@
+                            <li>@Html.ActionLink("MyBooking", "MyBookings", "Customer", new { area = "" }, new { @class = "nav-link" })</li>
+                            <li>@Html.ActionLink("Search-Room", "Search", "Customer", new { area = "" }, new { @class = "nav-link" })</li>
+
+                        }
+                    </ul>
+
+
+                <ul class="navbar-nav flex-grow">
+
+                    @if (Session["Username"] != null)
+                    {
+                        <li class="nav-item"><p style="color:#fff;margin-top:15px;"> Welcome @Session["Username"] </p></li>
+                        
+                        <li class="nav-item">@Html.ActionLink("Logout", "Logout", "Account", new { area = "" }, new { @class = "nav-link btn btn-danger a" })</li>
+
+                    }
+                    else
+
+
+                    {
+                        <li class="nav-item">@Html.ActionLink("Signup", "Signup", "Account", new { area = "" }, new { @class = "nav-link navbar-nav navbar-right  btn btn-primary a" }) &emsp;</li>
+                        <li class="nav-item">@Html.ActionLink("Login", "Login", "Account", new { area = "" }, new { @class = "nav-link navbar-nav navbar-right btn btn-secondary a" })</li>
+
+                    }
+
+
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container body-content">
+        @RenderBody()
+       
+        <footer height="500px">
+            <h6>&copy; @DateTime.Now.Year - Eden Hotel & Resort -- Mahesh</h6>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+
+<style>
+    li.nav-item{
+        padding-bottom:0;
+        height:55px;
+        padding-left:10px;
+    }
+
+    .flex-grow-1 {
+        flex-grow: revert;
+    }
+    
+    .navbar-brand{
+        color:azure;
+       font-size:x-large;
+
+    }
+    .ig {
+        height: 40px;
+        margin-right: 40px;
+    }
+    .navbar-brand:hover {
+        color: greenyellow;
+        font-size: x-large;
+    }
+    .navbar-expand-sm .navbar-nav .nav-link {
+        padding-right: var(--bs-navbar-nav-link-padding-x);
+        padding-left: var(--bs-navbar-nav-link-padding-x);
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-top: 5px;
+    }
+    .nav-link{
+        color:white;
+    }
+        .nav-link:hover {
+            color: greenyellow;
+        }
+    .a {
+        background-color: #0e162d;
+        color:white;
+       
+    }
+    .navbar > .container, .navbar > .container-fluid, .navbar > .container-sm, .navbar > .container-md, .navbar > .container-lg, .navbar > .container-xl, .navbar > .container-xxl {
+        display: flex;
+        flex-wrap: inherit;
+        align-items: center;
+        justify-content: space-between;
+        padding-left: 40px;
+      
+    }
+    
+
+
+    footer {
+        justify-content: center;
+        color: white;
+        background-color: #0e162d;
+        height: 60px;
+        text-align: center;
+        padding-top: 20px;
+        
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+</style>

@@ -1,0 +1,85 @@
+﻿
+@model HotelManagementProject.Models.Customer
+
+@{
+    ViewBag.Title = "DeleteCustomer";
+}
+
+
+<h3>Are you sure you want to delete this?</h3>
+<div class="main-container">
+    <h4>Customer</h4>
+    <hr />
+    <div class="container-fluid">
+
+        <dl class="row">
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.FirstName)
+            </dt>
+
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.FirstName)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.LastName)
+            </dt>
+
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.LastName)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </dt>
+
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.PhoneNumber)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Address)
+            </dt>
+
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Address)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.UserAccount.Username)
+            </dt>
+
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.UserAccount.Username)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-danger" /> |
+                <button class="btn btn-success">  @Html.ActionLink("Back to List", "ManageCustomers")</button>
+            </div>
+        }
+    </div>
+</div>
+<section class="temp">
+</section>
+<style>
+    .container, .container-fluid, .container-xxl, .container-xl, .container-lg, .container-md, .container-sm {
+        --bs-gutter-x: 1.5rem;
+        --bs-gutter-y: 0;
+        width: 100%;
+    }
+
+    .container-sm, .container {
+        max-width: 100%;
+    }
+
+    .temp {
+        height: 106px;
+    }
+</style>

@@ -1,0 +1,200 @@
+﻿@model HotelManagementProject.Models.Room
+
+@{
+    ViewBag.Title = "EditRoom";
+}
+
+<body>
+
+    <img src="~/Images/index_1 (3).jpg" />
+
+    <div class="vid-container">
+
+        <div class="inner-container">
+
+            <div class="box">
+                <h1 style="
+    margin-top: 3px;
+    margin-bottom: 2px;
+">
+                    EditRoom
+                </h1>
+
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal" style="
+    text-align: -webkit-center;">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.RoomId)
+
+                        <div class="form-group">
+                            @*@Html.LabelFor(model => model.RoomName, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.RoomName, new { htmlAttributes = new { @class = "form-control input" } })
+                                @Html.ValidationMessageFor(model => model.RoomName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @*@Html.LabelFor(model => model.RoomType, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.RoomType, new { htmlAttributes = new { @class = "form-control input" } })
+                                @Html.ValidationMessageFor(model => model.RoomType, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @*@Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control input" } })
+                                @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @*@Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Status, new { htmlAttributes = new { @class = "form-control input" } })
+                                @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Want to Change Image : </label>
+                            <label><input type="radio" name="changeImage" value="Yes" onclick="toggleImage(true)" />Yes</label>
+                            <label><input type="radio" name="changeImage" value="No" onclick="toggleImage(false)" />NO</label>
+                        </div>
+                        @*<div class="form-group">
+                            <div class="col-md-10">
+                                                    @Html.EditorFor(model => model.RoomImage, new { htmlAttributes = new { @class = "form-control input" } })
+                                                    @Html.ValidationMessageFor(model => model.RoomImage, "", new { @class = "text-danger" })
+                            </div>
+                            </div>*@
+                        <div class="form-group" id="imageInputDiv" style="display:none;">
+                            <div class="col-md-10">
+                                <input type="file" name="ImageFile" accept="image/*" class="input" required />
+                                @Html.ValidationMessageFor(model => model.RoomImage, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Save" class=" button1 btn btn-default" />
+                            </div>
+                        </div>
+                        <div>
+                            @Html.ActionLink("Back", "ManageRoom", "Admin")
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+</body>
+<script>function toggleImage(str) {
+        var image = document.getElementById("imageInputDiv");
+        if (str) {
+            image.style.display = "block";
+        }
+        else {
+            image.style.display = "none";
+        }
+    }</script>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<style>
+    .container, .container-fluid, .container-xxl, .container-xl, .container-lg, .container-md, .container-sm {
+        --bs-gutter-x: 1.5rem;
+        --bs-gutter-y: 0;
+        width: 100%;
+    }
+
+    .container-sm, .container {
+        max-width: 100%;
+    }
+
+    img {
+        height: 100vh;
+        width: 98.7vw;
+        left: 0;
+        top: 0;
+        z-index: -1;
+    }
+
+    .vid-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        transform: translate(-55%,-33%);
+        height: 562px;
+        width: 90vw;
+        top: 45%;
+        left: 50%;
+        z-index: 1;
+    }
+
+
+    .inner-container {
+        width: 400px;
+        height: 550px;
+        position: absolute;
+        top: calc(50vh - 300px);
+        left: calc(50vw - 200px);
+        overflow: hidden;
+        opacity: 1.2;
+    }
+
+    .box {
+        position: absolute;
+        height: 98%;
+        width: 100%;
+        font-family: Helvetica;
+        color: #3bcf0d;
+        background: rgb(253 247 247 / 23%);
+        border-radius: 10%;
+        opacity: 1.2;
+    }
+
+        .box h1 {
+            text-align: center;
+            margin: 30px 0;
+            font-size: 25px;
+        }
+
+    .input {
+        display: block;
+        align-content: center;
+        width: 400px;
+        margin: 20px auto;
+        padding: 15px;
+        background: rgba(0,0,0,0.2);
+        color: #fff;
+        border: 0;
+    }
+
+        .input:focus, .input:active, .button1:focus, .button1:active {
+            outline: none;
+        }
+
+    .button1 {
+        background: #2ecc71;
+        border: 0;
+        color: #fff;
+        padding: 10px;
+        font-size: 20px;
+        width: 330px;
+        margin: 20px auto;
+        display: block;
+        cursor: pointer;
+    }
+
+        .button1:active {
+            background: #27ae60;
+        }
+</style>

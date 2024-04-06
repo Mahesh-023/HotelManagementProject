@@ -1,0 +1,202 @@
+﻿
+@model HotelManagementProject.Models.UserAccount
+
+@{
+
+    ViewBag.Title = "Login";
+
+}
+
+<body>
+    
+    <img src="~/Images/index_1 (3).jpg" />
+    <div class="vid-container">
+
+        <div class="inner-container">
+
+            <div class="box">
+
+                <h1>Login</h1>
+
+                @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+
+                {
+
+                    @Html.AntiForgeryToken()
+
+            <div class="form-horizontal" style="
+
+    text-align: -webkit-center;">
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+                <div class="form-group">
+
+                    @*@Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-2" })*@
+
+                    <div class="col-md-10">
+
+                        @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control input ", @PlaceHolder = "Enter your username" } })
+
+                        @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+
+                    @*@Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })*@
+
+                    <div class="col-md-10">
+
+                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control input", @PlaceHolder = "Enter your password" } })
+
+                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+
+                    </div>
+
+                </div>
+                <div style="color:red">
+                    
+                    @ViewBag.Error
+                </div>
+                <div class="form-group">
+
+                    <div class="col-md-offset-2 col-md-10">
+
+                        <input type="submit" value="Login" class="button1 btn btn-primary" />
+
+                    </div>
+
+                </div>
+
+            </div>
+
+                    <p>Don't have Account?<span>@Html.ActionLink(" Register", "SignUp")</span> </p>
+
+                }
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+<style>
+    .container, .container-fluid, .container-xxl, .container-xl, .container-lg, .container-md, .container-sm {
+        --bs-gutter-x: 1.5rem;
+        --bs-gutter-y: 0;
+        width: 100%;
+    }
+
+    .container-sm, .container {
+        max-width: 100%;
+    }
+    .body-content {
+        margin-top: 0px;
+        margin-left: 0px;
+        margin-right: 0px;
+        padding-right: 0px;
+        padding-left: 0px;
+    }
+
+    body {
+        padding: 0;
+        margin: 0;
+
+    }
+
+    img {
+        height: 100vh;
+        width: 98.7vw;
+        left: 0;
+        top: 0;
+        z-index: -1;
+    }
+
+    .vid-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        transform: translate(-55%,-42%);
+        height: 100vh;
+        width: 90vw;
+        top: 50%;
+        left: 50%;
+        z-index: 1;
+    }
+
+
+    .inner-container {
+        width: 400px;
+        height: 500px;
+        position: absolute;
+        top: calc(50vh - 210px);
+        left: calc(50vw - 200px);
+        overflow: hidden;
+        opacity: 1.2;
+    }
+
+    .box {
+        position: absolute;
+        height: 80%;
+        width: 100%;
+        font-family: Helvetica;
+        color: #3bcf0d;
+        background: rgb(253 247 247 / 23%);
+        border-radius: 10%;
+        opacity: 1.2;
+    }
+
+        .box h1 {
+            text-align: center;
+            margin: 30px 0;
+            font-size: 30px;
+        }
+
+    .input {
+        display: block;
+        align-content: center;
+        width: 400px;
+        margin: 20px auto;
+        padding: 15px;
+        background: white;
+        color: black;
+        border: 0;
+    }
+
+        .input:focus, .input:active, .button1:focus, .button1:active {
+            outline: none;
+        }
+
+    .button1 {
+        background: #2ecc71;
+        border: 0;
+        color: #fff;
+        padding: 10px;
+        font-size: 20px;
+        width: 330px;
+        margin: 20px auto;
+        display: block;
+        cursor: pointer;
+    }
+
+        .button1:active {
+            background: #27ae60;
+        }
+
+    .box p {
+        font-size: 14px;
+        text-align: center;
+    }
+
+        .box p span {
+            cursor: pointer;
+            color: #666;
+        }
+</style>

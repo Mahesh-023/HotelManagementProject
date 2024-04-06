@@ -1,0 +1,81 @@
+﻿
+@model HotelManagementProject.Models.Customer
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="main-container">
+    <h2>Details</h2>
+
+    <div class="container-fluid">
+        <dl class="row">
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.FirstName)
+            </dt>
+
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.FirstName)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.LastName)
+            </dt>
+
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.LastName)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </dt>
+
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.PhoneNumber)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Address)
+            </dt>
+
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Address)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.UserAccount.Username)
+            </dt>
+
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.UserAccount.Username)
+            </dd>
+
+        </dl>
+    </div>
+</div>
+<p>
+    <button class="btn btn-success">@Html.ActionLink("Back to List", "ManageCustomers")</button>
+</p>
+<section class="temp">
+</section>
+<style>
+    .container, .container-fluid, .container-xxl, .container-xl, .container-lg, .container-md, .container-sm {
+        --bs-gutter-x: 1.5rem;
+        --bs-gutter-y: 0;
+        width: 100%;
+    }
+
+    .container-sm, .container {
+        max-width: 100%;
+    }
+
+    .temp {
+        height: 196px;
+    }
+
+    footer {
+        bottom: 0;
+        position: fixed;
+        width: -webkit-fill-available;
+    }
+</style>

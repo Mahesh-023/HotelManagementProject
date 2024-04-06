@@ -1,0 +1,93 @@
+﻿
+@model IPagedList<HotelManagementProject.Models.Booking>
+@using PagedList.Mvc;
+@using PagedList;
+
+@{
+    ViewBag.Title = "ManageBookings";
+    var today = DateTime.Today;
+}
+
+<table width:"100%" class=" table table-bordered border-1">
+    <thead style="background-color: cadetblue; border-width:1px; border-color:black; height: 35px">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.First().CheckInDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().CheckOutDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().TotalAmount)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.First().Customer.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Room.RoomName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody style=" border-width: 1px; border-color:black;">
+        @foreach (var item in Model)
+        {
+            var todaydate = item.CheckOutDate >= today ? "green" : "red";
+            <tr class="@todaydate">
+                <td>
+                    @Html.DisplayFor(modelItem => item.CheckInDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CheckOutDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalAmount)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Customer.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Room.RoomName)
+                </td>
+                <td>
+                    <button class="btn btn-success"><a href="@Url.Action("Index", "Payment", new { id = item.BookingId })" style="color: inherit; text-decoration: none;">Check Payment Status</a></button>
+                    <button class="btn btn-info"><a href="@Url.Action("Details", new { id = item.CustomerId })" style="color: inherit; text-decoration: none;">Details</a></button>
+                    <button class="btn btn-danger"><a href="@Url.Action("DeleteBooking", new { id = item.BookingId })" style="color: inherit; text-decoration: none;">Delete</a></button>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@Html.PagedListPager(Model, i => Url.Action("ManageBookings", "Admin", new { i, search = Request.QueryString["search"] }))
+<style>
+    .container, .container-fluid, .container-xxl, .container-xl, .container-lg, .container-md, .container-sm {
+        --bs-gutter-x: 1.5rem;
+        --bs-gutter-y: 0;
+        width: 100%;
+
+    }
+
+    .container-sm, .container {
+        max-width: 100%;
+    }
+
+    td, th {
+        text-align: center;
+    }
+
+    .red {
+        background-color: #f36f6d;
+        font-weight: 400;
+    }
+
+    .green {
+        background-color: white;
+        font-weight: 400;
+    }
+    table {
+        min-height: 70vh;
+    }
+</style>

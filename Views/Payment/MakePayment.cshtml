@@ -1,0 +1,201 @@
+﻿@model HotelManagementProject.Models.Payment
+
+@{
+    ViewBag.Title = "MakePayment";
+}
+
+<body style="
+      margin-top: 0px;
+      margin-left: 0px;
+      margin-right: 0px;
+      ">
+    
+    <img src="~/Images/index_1 (3).jpg" />
+
+    <div class="vid-container">
+
+        <div class="inner-container">
+
+            <div class="box">
+                <h1>Make-Payment</h1>
+                @using (Html.BeginForm("MakePayment", "Payment", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal" style="
+                      text-align: -webkit-center;">
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group" style="display:none">
+                           
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.BookingId, new { @class = "form-control", @Value = ViewBag.bookingId })
+                                @Html.ValidationMessageFor(model => model.BookingId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.AmountPaid, new { @class = "form-control input", @Value = ViewBag.Amt })
+                                @Html.ValidationMessageFor(model => model.AmountPaid, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                           
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.PaymentDate, new { @class = "form-control input", type = "date", @Value = ViewBag.date })
+                                @Html.ValidationMessageFor(model => model.PaymentDate, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Select Payment Method: </label>
+                            <div class="col-md-10">
+                                @Html.DropDownList("PaymentMode", new List<SelectListItem>
+                                           {
+                               new SelectListItem{Text="Pay on Visit",Value="PayOnVisit"},
+                               new SelectListItem{Text="Online Pay",Value="OnlinePay"}
+
+                           }, new { id = "PaymentMethod" })
+                            </div>
+                        </div>
+
+                        <br />
+                       
+                        <div id="qrCode">
+                            
+                            <img  class="imgs" src="~/Images/MicrosoftTeams-image (22).png" />
+                        </div>
+
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Create" class="btn btn-default button1" />
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</body>
+
+
+
+<style>
+    .container, .container-fluid, .container-xxl, .container-xl, .container-lg, .container-md, .container-sm {
+        --bs-gutter-x: 1.5rem;
+        --bs-gutter-y: 0;
+        width: 100%;
+    }
+
+    .container-sm, .container {
+        max-width: 100%;
+    }
+
+    .body-content {
+        margin-top: 0px;
+        margin-left: 0px;
+        margin-right: 0px;
+        padding-right: 0px;
+        padding-left: 0px;
+    }
+
+    img {
+        height: 100vh;
+        width: 97vw;
+        left: 0;
+        top: 0;
+        z-index: -1;
+        
+    }
+    .imgs {
+        height: 130px;
+        width: 130px;
+        left: 0;
+        top: 0;
+        z-index: -1;
+    }
+
+    .QR {
+        height: 110px;
+        width: 110px;
+    }
+
+    body {
+        padding: 0;
+        margin: 0;
+    }
+
+    .vid-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        transform: translate(-55%,-35%);
+        height: 100vh;
+        width: 90vw;
+        top: 50%;
+        left: 50%;
+        z-index: 1;
+    }
+
+
+    .inner-container {
+        width: 400px;
+        height: 600px;
+        position: absolute;
+        top: calc(50vh - 270px);
+        left: calc(50vw - 200px);
+        overflow: hidden;
+    }
+
+    .box {
+        position: absolute;
+        height: 85%;
+        width: 100%;
+        font-family: Helvetica;
+        color: #3bcf0d;
+        background: rgb(253 247 247 / 23%);
+        border-radius: 10%;
+        opacity: 1.2;
+    }
+
+        .box h1 {
+            text-align: center;
+            margin: 30px 0;
+            font-size: 30px;
+        }
+
+    .input {
+        display: block;
+        align-content: center;
+        width: 400px;
+        margin: 20px auto;
+        padding: 15px;
+        background: rgba(0,0,0,0.2);
+        color: #fff;
+        border: 0;
+    }
+
+        .input:focus, .input:active, .button1:focus, .button1:active {
+            outline: none;
+        }
+
+    .button1 {
+        background: #2ecc71;
+        border: 0;
+        color: #fff;
+        padding: 10px;
+        font-size: 20px;
+        width: 330px;
+        margin: 20px auto;
+        display: block;
+        cursor: pointer;
+    }
+
+        .button1:active {
+            background: #27ae60;
+        }
+</style>

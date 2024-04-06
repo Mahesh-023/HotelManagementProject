@@ -1,0 +1,184 @@
+﻿@model IPagedList<HotelManagementProject.Models.Room>
+@using PagedList.Mvc;
+@using PagedList;
+@{
+    ViewBag.Title = "Search";
+}
+
+<section class="searc">
+    <div class="filter">
+
+        <h3 style="color:black"> - Search For The Room -</h3>
+
+        @using (Html.BeginForm("Search", "Customer", FormMethod.Get))
+        {
+            <label for="roomType">Room Type:</label>
+            @Html.DropDownList("roomType", ViewBag.RoomTypes as SelectList, "All")
+
+            <label for="roomType">Room Status:</label>
+            @Html.DropDownList("roomStatus", ViewBag.RoomStatus as SelectList)
+            <label for="minPrice">Minimum Price:</label>
+            <select id="minPrice" name="minPrice">
+                <option value="500">500</option>
+                <option value="1000">1000</option>
+                <option value="2000">2000</option>
+                <option value="3000">3000</option>
+                <option value="4000">4000</option>
+            </select>
+
+            <label for="maxPrice">Maximum Price:</label>
+            <select id="maxPrice" name="maxPrice">
+                <option value="10000">10000</option>
+                <option value="3000">3000</option>
+                <option value="4000">4000</option>
+                <option value="5000">5000</option>
+                <option value="6000">6000</option>
+            </select>
+            <span>  </span>
+            <input type="submit" value="Search" class="btn btn-warning A" />
+        }
+    </div>
+
+    <section class="section3 container-fluid" id="down">
+        <div class="row .card .col-lg-6 mb-4">
+            @foreach (var item in Model)
+            {
+                <div class="card" style="width:30.40%;">
+                    <img src="@Url.Content(item.RoomImage)" class="card-img-top" height="200px" width="200px" alt="..." />
+                    <div class="card-body">
+
+                        <h5 class="card-header" style="color:blue"><span> Room Type :</span> @Html.DisplayFor(modelItem => item.RoomType)</h5>
+
+                        <h5 class="card-header" style="color: blue"><span>Room Number :</span> @Html.DisplayFor(modelItem => item.RoomName)</h5>
+
+                        <h5 class="card-header" style="color: blue"><span> Room Price Per Day :</span> Rs @Html.DisplayFor(modelItem => item.Price)</h5>
+                        @if (item.Status == "Available")
+                        {
+                            <h5 class="card-header" style="color:forestgreen"><span> Room Status : </span>@Html.DisplayFor(modelItem => item.Status)</h5>
+                        }
+                        else
+                        {
+                            <h5 class="card-header" style="color: red"> <span>Room Status : </span>@Html.DisplayFor(modelItem => item.Status)</h5>
+                        }
+                        <br />
+
+
+                        @if (item.Status == "Available")
+                        {
+                            <button class="btn btn-success bt">
+                                <a href="@Url.Action("CreateBooking", new { id = item.RoomId })" style="color: inherit; text-decoration: none;">Book Now</a>
+                            </button>
+
+                        }
+                        else
+                        {
+                            <button class="btn btn-danger  bt"> Not Available </button>
+                        }
+
+                        &nbsp;&nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                        <button class="btn btn-primary bt">
+                            <a href="@Url.Action("Details", new { id = item.RoomId })" style="color: inherit; text-decoration: none;">View Details</a>
+                        </button>
+
+
+                    </div>
+                </div>
+
+            }
+        </div>
+
+    </section>
+
+
+    @Html.PagedListPager(Model, i => Url.Action("Search", "Customer", new { i, search = Request.QueryString["search"] }))
+</section>
+<style>
+    .row {
+        --bs-gutter-x: 0;
+        --bs-gutter-y: 0;
+    }
+
+    span {
+        color: black;
+        font-weight: 700;
+    }
+
+    h5 {
+        font-weight: 800;
+    }
+
+    .container, .container-fluid, .container-xxl, .container-xl, .container-lg, .container-md, .container-sm {
+        --bs-gutter-x: 0;
+        --bs-gutter-y: 0;
+        width: 100%;
+    }
+
+    .container-sm, .container {
+        max-width: 100%;
+    }
+
+    .card {
+        border: 3px solid black;
+        /*padding-bottom: 1%;*/
+        font-family: serif;
+        /* border-radius: 10px;*/
+        margin: 19px;
+    }
+
+    .card-text {
+        font-size: 20px;
+    }
+
+    .card-title {
+        font-size: 22px;
+        color: purple;
+        font-weight: 700;
+    }
+
+    h2, h3 {
+        text-align: center;
+        color: black;
+        font-weight: 600;
+    }
+
+    .view {
+        text-align: center;
+    }
+
+    a {
+        
+        text-decoration: none;
+    }
+
+    btn:hover {
+        color: black;
+        text-decoration: none;
+    }
+
+    button:hover {
+        color: darkslategrey
+    }
+
+    .filter {
+        text-align: center;
+    }
+
+    .searc {
+        background-image: url('../../images/pexels-adriaan-greyling-751268.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .A {
+        margin-left: 35px;
+    }
+
+    label {
+        font-weight: 500;
+    }
+
+    .body-content {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+</style>
